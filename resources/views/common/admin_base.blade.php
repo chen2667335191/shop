@@ -127,7 +127,7 @@
         </div><!-- headerbar -->
 
         <div class="pageheader">
-          @yield('pageheader')
+          @yield('pageHeader')
         </div>
 
         <div class="contentpanel">

@@ -90,67 +90,32 @@ Route::middleware('admin_auth')->prefix('admin')->group(function (){
 
     /*#############################[角色相关]#############################*/
 
+    /*#############################[商品品牌相关]#############################*/
+    Route::get('/brand/list','Admin\BrandController@list')->name('admin.brand.list');
+    Route::post('/brand/data/list','Admin\BrandController@getListData')->name('admin.brand.data.list');
+    Route::get('/brand/add','Admin\BrandController@add')->name('admin.brand.add');
+    Route::post('/brand/doadd','Admin\BrandController@doadd')->name('admin.brand.doadd');
+    Route::get('/brand/edit/{id}','Admin\BrandController@edit')->name('admin.brand.edit');
+    Route::post('/brand/doedit','Admin\BrandController@doedit')->name('admin.brand.doedit');
+    Route::get('/brand/del/{id}','Admin\BrandController@del')->name('admin.brand.del');
+    Route::post('/brand/changeAttr','Admin\BrandController@changeAttr')->name('admin.brand.changeAttr');
+    /*#############################[商品品牌相关]#############################*/
 
-    /*#############################[小说相关]#############################*/
-
-    //作者列表
-    Route::get('author/list','Admin\AuthorController@list')->name('admin.author.list');
-    //作者添加
-    Route::get('author/create','Admin\AuthorController@create')->name('admin.author.create');
-    //作者执行添加
-    Route::post('author/store','Admin\AuthorController@store')->name('admin.author.store');
-    //作者执行删除
-    Route::get('author/del/{id}','Admin\AuthorController@del')->name('admin.author.del');
-
-    //分类列表
+    /*#############################[商品分类相关]#############################*/
     Route::get('category/list','Admin\CategoryController@list')->name('admin.category.list');
-    //分类添加
-    Route::get('category/create','Admin\CategoryController@create')->name('admin.category.create');
-    //执行分类添加
-    Route::post('category/store','Admin\CategoryController@store')->name('admin.category.store');
-    //分类删除
+    Route::get('category/getList/{fid?}','Admin\CategoryController@getlistData')->name('admin.category.getList');
+    Route::get('category/add','Admin\CategoryController@add')->name('admin.category.add');
+    Route::post('category/doadd','Admin\CategoryController@doadd')->name('admin.category.doadd');
+    Route::get('category/edit/{id}','Admin\CategoryController@edit')->name('admin.category.edit');
+    Route::post('category/doedit','Admin\CategoryController@doedit')->name('admin.category.doedit');
     Route::get('category/del/{id}','Admin\CategoryController@del')->name('admin.category.del');
+    /*#############################[商品分类相关]#############################*/
 
 
-    //小说添加
-    Route::get('novel/create','Admin\NovelController@create')->name('admin.novel.create');
-    //执行小说添加
-    Route::post('novel/store','Admin\NovelController@store')->name('admin.novel.store');
-    //小说列表
-    Route::get('novel/list','Admin\NovelController@list')->name('admin.novel.list');
-    //小说编辑
-    Route::get('nove/edit/{id}','Admin\NovelController@edit')->name('admin.novel.edit');
-    //执行小说编辑
-    Route::post('nove/doEdit','Admin\NovelController@doEdit')->name('admin.novel.doEdit');
-    //小说的删除
-    Route::get('novel/del/{id}','Admin\NovelController@del')->name('admin.novel.del');
-
-    //添加小说章节页面
-    Route::get('chapter/add/{novel_id}','Admin\ChapterController@create')->name('admin.chapter.create');
-    //保存小说的章节
-    Route::post('chapter/store','Admin\ChapterController@store')->name('admin.chapter.store');
-    //小说章节列表
-    Route::get('chapter/list/{novel_id?}','Admin\ChapterController@list')->name('admin.chapter.list');
-    //章节删除
-    Route::get('chapter/del/{id}','Admin\ChapterController@del')->name('admin.chapter.del');
-    //章节编辑
-    Route::get('chapter/edit/{id}','Admin\ChapterController@edit')->name('admin.chapter.edit');
-    //执行章节编辑
-    Route::post('chapter/doEdit','Admin\ChapterController@doEdit')->name('admin.chapter.doEdit');
-
-
-    //小说评论列表页面
-    Route::get('novel/comment/list','Admin\CommentController@list')->name('admin.novel.comment.list');
-    //小说数据
-    Route::get('novel/comment/data','Admin\CommentController@getComment')->name('admin.novel.comment.data');
-    //小说评论审核
-    Route::get('novel/comment/check/{id}','Admin\CommentController@check')->name('admin.novel.comment.check');
-
-    //小说评论删除
-    Route::get('novel/comment/del/{id}','Admin\CommentController@del')->name('admin.novel.comment.del');
-
-    /*#############################[小说相关]#############################*/
-
+    /*#############################[文章分类相关]#############################*/
+    Route::get('ArticleCategory/list','Admin\ArticleCategoryController@list')->name('admin.ArticleCategory.list');
+    Route::get('ArticleCategory/add','Admin\ArticleCategoryController@add')->name('admin.ArticleCategory.add');
+    /*#############################[文章分类相关]#############################*/
 
 });
 
