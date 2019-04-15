@@ -35,7 +35,7 @@
                         <td>{{$value['id']}}</td>
                         <td>{{$value['cate_name']}}</td>
                         <td>{{$value['cate_desc']}}</td>
-                        <td>{{$value['order']}}</td>
+                        <td>{{$value['cate_order']}}</td>
                         <td>
                             <a class="btn btn-sm btn-success" href="/admin/ArticleCategory/edit/{{$value['id']}}">编辑</a>
                             <a class="btn btn-sm btn-danger" href="/admin/ArticleCategory/del/{{$value['id']}}">删除</a>

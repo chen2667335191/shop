@@ -115,7 +115,37 @@ Route::middleware('admin_auth')->prefix('admin')->group(function (){
     /*#############################[文章分类相关]#############################*/
     Route::get('ArticleCategory/list','Admin\ArticleCategoryController@list')->name('admin.ArticleCategory.list');
     Route::get('ArticleCategory/add','Admin\ArticleCategoryController@add')->name('admin.ArticleCategory.add');
+    Route::post('ArticleCategory/doadd','Admin\ArticleCategoryController@doadd')->name('admin.ArticleCategory.doadd');
+    Route::get('ArticleCategory/edit/{id}','Admin\ArticleCategoryController@edit')->name('admin.ArticleCategory.edit');
+    Route::post('ArticleCategory/doedit','Admin\ArticleCategoryController@doedit')->name('admin.ArticleCategory.doedit');
+    Route::get('ArticleCategory/del/{id}','Admin\ArticleCategoryController@del')->name('admin.ArticleCategory.doadd');
     /*#############################[文章分类相关]#############################*/
+
+    /*#############################[文章相关]#############################*/
+    Route::get('Article/list','Admin\ArticleController@list')->name('admin.Article.list');
+    Route::get('Article/add','Admin\ArticleController@add')->name('admin.Article.add');
+    Route::post('Article/doadd','Admin\ArticleController@doadd')->name('admin.Article.doadd');
+    Route::get('Article/edit/{id}','Admin\ArticleController@edit')->name('admin.Article.edit');
+    Route::post('Article/doedit','Admin\ArticleController@doedit')->name('admin.Article.doedit');
+    Route::get('Article/del/{id}','Admin\ArticleController@del')->name('admin.Article.del');
+    /*#############################[文章相关]#############################*/
+
+
+    /*#############################[广告位相关]#############################*/
+    Route::get('Ad/Position/list','Admin\AdPositionController@list')->name('admin.AdPosition.list');
+    Route::get('position/add','Admin\AdPositionController@add')->name('admin.AdPosition.add');
+    Route::post('position/doadd','Admin\AdPositionController@doadd')->name('admin.AdPosition.doadd');
+    Route::get('position/edit/{id}','Admin\AdPositionController@edit')->name('admin.AdPosition.edit');
+    Route::post('position/doedit','Admin\AdPositionController@doedit')->name('admin.AdPosition.doedit');
+    Route::get('position/del/{id}','Admin\AdPositionController@del')->name('admin.AdPosition.del');
+    /*#############################[广告位相关]#############################*/
+
+
+    /*#############################[广告相关]#############################*/
+    Route::get('ad/list','Admin\AdController@list')->name('admin.ad.list');
+    Route::get('ad/add','Admin\AdController@add')->name('admin.ad.add');
+    Route::post('ad/doadd','Admin\AdController@doadd')->name('admin.ad.doadd');
+    /*#############################[广告相关]#############################*/
 
 });
 

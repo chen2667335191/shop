@@ -1,11 +1,11 @@
 @extends('common.admin_base')
 
-@section('title','管理后台-广告添加')
+@section('title','管理后台-运营活动')
 
 <!--页面顶部信息-->
 @section('pageHeader')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> 广告添加 <span>Subtitle goes here...</span></h2>
+        <h2><i class="fa fa-home"></i> 运营活动 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
         </div>
     </div>
@@ -13,12 +13,12 @@
 
 @section('content')
     @if(session('msg'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" >
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             {{ session('msg') }}
         </div>
     @endif
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" id="alert-danger">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <span id="error_msg"></span>
     </div>
@@ -29,43 +29,19 @@
                 <a href="" class="minimize">&minus;</a>
             </div>
 
-            <h4 class="panel-title">广告添加表单</h4>
+            <h4 class="panel-title">运营活动表单</h4>
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="/admin/ad/add" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal form-bordered" action="" method="post">
                 {{csrf_field()}}
-
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" name="position_id">广告位置</label>
+                    <label class="col-sm-3 control-label">活动名称</label>
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            @if(!empty($position))
-                                @foreach($position as $v)
-                            <option value="{{$v['id']}}">{{$v['position_name']}}</option>
-                                @endforeach
-                            @endif
-                        </select>
+                        <input type="text" placeholder="广告名称" class="form-control" name="activity_name" value="" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">图片地址</label>
-                    <div class="col-sm-6">
-                        <input type="file" placeholder="上传文件" class="form-control" name="image_url" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">广告名称</label>
-                    <div class="col-sm-6">
-                        <input type="text" placeholder="广告名称" class="form-control" name="ad_name" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">链接地址</label>
-                    <div class="col-sm-6">
-                        <input type="text" placeholder="链接地址" class="form-control" name="ad_link" value="" />
-                    </div>
-                </div>
+                
                 <div class="form-group">
                     <label class="col-sm-3 control-label">开始时间</label>
                     <div class="col-sm-6">
@@ -79,23 +55,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">点击次数</label>
+                    <label class="col-sm-3 control-label">活动配置</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="点击次数" class="form-control" name="clicks" value="{{rand(1,100)}}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">状态</label>
-                    <div class="col-sm-6">
-                        <div class="radio"><label><input type="radio" name="status" value="1" checked> 开启</label></div>
-                        <div class="radio"><label><input type="radio" name="status" value="2" >关闭</label></div>
+                        <textarea class="form-control" rows="5" name="active_config"></textarea>
                     </div>
                 </div>
 
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <button class="btn btn-primary btn-danger" id="btn-save">保存广告</button>&nbsp;
+                            <button class="btn btn-primary btn-danger" id="btn-save">保存活动</button>&nbsp;
                         </div>
                     </div>
                 </div><!-- panel-footer -->
@@ -107,28 +76,15 @@
         <link rel="stylesheet" type="text/css" href="/css/datetimepicker/bootstrap-datetimepicker.min.css">
         <script type="text/javascript">
 
-            $(".alert-danger").hide();
+            $("#alert-danger").hide();
 
             $("#btn-save").click(function(){
-
-                var image_url = $("input[name=image_url]").val();
-                var ad_name = $("input[name=ad_name]").val();
-                var ad_link = $("input[name=ad_link]").val();
+                var activity_name = $("input[name=activity_name]").val();
                 var start_time = $("input[name=start_time]").val();
                 var end_time = $("input[name=end_time]").val();
 
-                if(image_url == ''){
-                    $("#error_msg").text('请上传广告图片');
-                    $(".alert-danger").show();
-                    return false;
-                }
-                if(ad_name == ''){
-                    $("#error_msg").text('广告名称不能为空');
-                    $(".alert-danger").show();
-                    return false;
-                }
-                if(ad_link == ''){
-                    $("#error_msg").text('广告链接不能为空');
+                if(activity_name == ''){
+                    $("#error_msg").text('活动名称不能为空');
                     $(".alert-danger").show();
                     return false;
                 }

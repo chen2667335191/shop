@@ -8,7 +8,7 @@
     <div class="pageheader">
         <h2><i class="fa fa-home"></i> 文章列表 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
-            <a class="btn btn-sm btn-danger" href="/admin/article/add">+ 添加新文章</a>
+            <a class="btn btn-sm btn-danger" href="/admin/Article/add">+ 添加新文章</a>
         </div>
     </div>
 @endsection
@@ -31,20 +31,30 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(!empty($list))
+                        @foreach($list as $article)
                     <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
+                        <td>{{$article->id}}</td>
+                        <td>{{$article->cate_name}}</td>
+                        <td>{{$article->title}}</td>
+                        <td>{{$article->publish_at}}</td>
+                        <td>{{$article->clicks}}</td>
                         <td>
-                            <a class="btn btn-sm btn-success" href="/admin/article/edit">编辑</a>
-                            <a class="btn btn-sm btn-danger" href="/admin/article/del">删除</a>
+                            @if($article->status==1)待审核
+                                @elseif($article->status==2)审核
+                                @else 已发布
+                                @endif
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-success" href="/admin/Article/edit/{{$article->id}}">编辑</a>
+                            <a class="btn btn-sm btn-danger" href="/admin/Article/del/{{$article->id}}">删除</a>
                         </td>
                     </tr>
+                    @endforeach
+                    @endif
                     </tbody>
                 </table>
+                {{$list->links()}}
             </div><!-- table-responsive -->
         </div>
     </div>

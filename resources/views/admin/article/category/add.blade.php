@@ -33,7 +33,7 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/ArticleCategory/doadd" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章分类名称</label>

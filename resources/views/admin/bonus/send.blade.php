@@ -1,11 +1,11 @@
 @extends('common.admin_base')
 
-@section('title','管理后台-广告位添加')
+@section('title','管理后台-发送红包')
 
 <!--页面顶部信息-->
 @section('pageHeader')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> 广告位添加 <span>Subtitle goes here...</span></h2>
+        <h2><i class="fa fa-home"></i> 发送红包 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
         </div>
     </div>
@@ -29,50 +29,65 @@
                 <a href="" class="minimize">&minus;</a>
             </div>
 
-            <h4 class="panel-title">广告位添加表单</h4>
+            <h4 class="panel-title">发送红包表单</h4>
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="/admin/position/doadd" method="post">
+            <form class="form-horizontal form-bordered" action="" method="post">
                 {{csrf_field()}}
+
+                <input type="hidden" name="bonus_id" value="{{$bonus_info->id}}">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">广告位名称</label>
+                    <label class="col-sm-3 control-label">红包名称</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="广告名称" class="form-control" name="position_name" value="" />
+                        <input type="text" placeholder="红包名称" class="form-control" name="bonus_name" value="{{$bonus_info->bonus_name}}"  disabled />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">广告位描述</label>
+                    <label class="col-sm-3 control-label">用户手机号</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="position_desc"></textarea>
+                        <input type="text" placeholder="请输入用户手机号" class="form-control" name="phone" value="" />
                     </div>
                 </div>
 
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <button class="btn btn-primary btn-danger" id="btn-save">保存广告位</button>&nbsp;
+                            <button class="btn btn-primary btn-danger" id="btn-save">发送红包</button>&nbsp;
                         </div>
                     </div>
                 </div><!-- panel-footer -->
             </form>
 
         </div><!-- panel-body -->
+        <script type="text/javascript" src="/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/datetimepicker/bootstrap-datetimepicker.min.css">
         <script type="text/javascript">
 
             $(".alert-danger").hide();
 
-            $("#btn-save").click(function(){
+                $("#btn-save").click(function(){
 
-                var position_name = $("input[name=position_name]").val();
+                var phone = $("input[name=phone]").val();
 
-                if(position_name == ''){
-                    $("#error_msg").text('广告位名称不能为空');
+                if(phone == ''){
+                    $("#error_msg").text('请输入用户的手机');
                     $(".alert-danger").show();
                     return false;
                 }
 
             });
+
+            //开始日期
+            $("#start_time,#end_time").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii:ss',
+                autoclose: true,
+                minView: 0,
+                language:  'zh-CN',
+                minuteStep:1
+            });
+
         </script>
 
 @endsection

@@ -4,21 +4,20 @@ namespace App\Rbac;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ArticleCategory extends Model
+class AdPosition extends Model
 {
     //
-    protected $table='jy_article_category';
+    protected $table='jy_ad_position';
     public $timestamps = false;
 
-    public static function getArticleCategoryList(){
+    public static function getInfo(){
         return self::get()->toArray();
     }
-
     public static function doadd($data){
-        return self::insertGetId($data);
+        return self::insert($data);
     }
 
-    public static function edit($id){
+    public static function getInfoById($id){
         return self::where('id',$id)->first();
     }
 
@@ -29,5 +28,6 @@ class ArticleCategory extends Model
     public static function del($id){
         return self::where('id',$id)->delete();
     }
+
 
 }

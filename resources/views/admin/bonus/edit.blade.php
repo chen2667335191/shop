@@ -1,11 +1,11 @@
 @extends('common.admin_base')
 
-@section('title','管理后台-广告添加')
+@section('title','管理后台-广告编辑')
 
 <!--页面顶部信息-->
 @section('pageHeader')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> 广告添加 <span>Subtitle goes here...</span></h2>
+        <h2><i class="fa fa-home"></i> 广告编辑 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
         </div>
     </div>
@@ -29,22 +29,20 @@
                 <a href="" class="minimize">&minus;</a>
             </div>
 
-            <h4 class="panel-title">广告添加表单</h4>
+            <h4 class="panel-title">广告编辑表单</h4>
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="/admin/ad/add" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal form-bordered" action="" method="post">
                 {{csrf_field()}}
 
+                <input type="hidden" name="id">
+
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" name="position_id">广告位置</label>
+                    <label class="col-sm-3 control-label">广告位置</label>
                     <div class="col-sm-6">
                         <select class="form-control">
-                            @if(!empty($position))
-                                @foreach($position as $v)
-                            <option value="{{$v['id']}}">{{$v['position_name']}}</option>
-                                @endforeach
-                            @endif
+                            <option value="1">首页banner</option>
                         </select>
                     </div>
                 </div>
@@ -81,7 +79,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">点击次数</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="点击次数" class="form-control" name="clicks" value="{{rand(1,100)}}" />
+                        <input type="text" placeholder="点击次数" class="form-control" name="clicks" value="" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -109,7 +107,7 @@
 
             $(".alert-danger").hide();
 
-            $("#btn-save").click(function(){
+                $("#btn-save").click(function(){
 
                 var image_url = $("input[name=image_url]").val();
                 var ad_name = $("input[name=ad_name]").val();
@@ -141,7 +139,7 @@
 
                 if(end_time < start_time){
                     $("#error_msg").text('结束时间不能小于开始时间');
-                    $(".alert-danger").toggle();
+                    $(".alert-danger").show();
                     return false;
                 }
 

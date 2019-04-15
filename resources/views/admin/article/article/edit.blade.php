@@ -33,28 +33,31 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/Article/doedit" method="post">
                 {{csrf_field()}}
-                <input type="hidden" name="id" value="">
-                <input type="hidden" name="admin_id" value="{{$user_id}}">
+                <input type="hidden" name="id" value="{{$info->id}}">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章分类</label>
                     <div class="col-sm-6">
                         <select class="form-control" id="cate_id">
-                            <option value="1">首页banner</option>
+                            @if(!empty($category))
+                                @foreach($category as $cate)
+                            <option value="{{$cate['id']}}" @if($info->cate_id == $cate['id']) selected @endif>{{$cate['cate_name']}}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章标题</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="文章标题" class="form-control" name="title" value="" />
+                        <input type="text" placeholder="文章标题" class="form-control" name="title" value="{{$info['title']}}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">发布时间</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="发布时间" class="form-control" id="publish_at" name="publish_at" value="" />
+                        <input type="text" placeholder="发布时间" class="form-control" id="publish_at" name="publish_at" value="{{$info['publish_at']}}" />
                     </div>
                 </div>
                 
@@ -62,28 +65,28 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章点击数</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="文章点击数" class="form-control" name="clicks" value="{{rand(1,100)}}" />
+                        <input type="text" placeholder="文章点击数" class="form-control" name="clicks" value="{{$info['clicks']}}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">状态</label>
                     <div class="col-sm-6">
-                        <div class="radio"><label><input type="radio" name="status" value="1" checked> 待审核</label></div>
-                        <div class="radio"><label><input type="radio" name="status" value="2" >审核</label></div>
-                        <div class="radio"><label><input type="radio" name="status" value="3" >已发布</label></div>
+                        <div class="radio"><label><input type="radio" name="status" value="1" @if($info['status']==1) checked @endif> 待审核</label></div>
+                        <div class="radio"><label><input type="radio" name="status" value="2" @if($info['status']==2) checked @endif >审核</label></div>
+                        <div class="radio"><label><input type="radio" name="status" value="3" @if($info['status']==3) checked @endif>已发布</label></div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章描述</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="description"></textarea>
+                        <textarea class="form-control" rows="3" name="description">{{$info['description']}}</textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章描述</label>
                     <div class="col-sm-9">
-                        <textarea rows="6" name="content" id="content"></textarea>
+                        <textarea rows="6" name="content" id="content">{{$content->content}}</textarea>
                     </div>
                 </div>
                 <div class="panel-footer">

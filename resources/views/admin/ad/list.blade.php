@@ -2,7 +2,6 @@
 
 @section('title','管理后台广告列表')
 
-
 <!--页面顶部信息-->
 @section('pageHeader')
     <div class="pageheader">
@@ -34,21 +33,25 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(!empty($info))
+                        @foreach($info as $key => $val)
                     <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
+                        <td>{{$val->id}}</td>
+                        <td><img src="{{$val->url}}" style="width:50px;"></td>
+                        <td>{{$val->position_name}}</td>
+                        <td>{{$val->ad_name}}</td>
+                        <td>{{$val->ad_link}}</td>
+                        <td>{{$val->start_time}}</td>
+                        <td>{{$val->end_time}}</td>
+                        <td>{{$val->clicks}}</td>
+                        <td>{{$val->static == 1?"开启":"关闭"}}</td>
                         <td>
-                            <a class="btn btn-sm btn-success" href="/admin/ad/edit">编辑</a>
-                            <a class="btn btn-sm btn-danger">删除</a>
+                            <a class="btn btn-sm btn-success" href="/admin/ad/edit/{{$val->id}}">编辑</a>
+                            <a class="btn btn-sm btn-success" href="/admin/ad/del/{{$val->id}}">删除</a>
                         </td>
                     </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->

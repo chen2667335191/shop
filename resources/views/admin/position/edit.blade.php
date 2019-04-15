@@ -33,19 +33,19 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/position/doedit" method="post">
                 {{csrf_field()}}
-                <input type="hidden" name="id">
+                <input type="hidden" name="id" value="{{$info['id']}}">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">广告位名称</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="广告名称" class="form-control" name="position_name" value="" />
+                        <input type="text" placeholder="广告名称" class="form-control" name="position_name" value="{{$info['position_name']}}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">广告位描述</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="position_desc"></textarea>
+                        <textarea class="form-control" rows="3" name="position_desc">{{$info['position_desc']}}</textarea>
                     </div>
                 </div>
 

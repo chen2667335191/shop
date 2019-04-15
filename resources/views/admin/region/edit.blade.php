@@ -1,11 +1,11 @@
 @extends('common.admin_base')
 
-@section('title','管理后台-广告位添加')
+@section('title','管理后台-地区添加')
 
 <!--页面顶部信息-->
 @section('pageHeader')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> 广告位添加 <span>Subtitle goes here...</span></h2>
+        <h2><i class="fa fa-home"></i> 地区添加 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
         </div>
     </div>
@@ -13,7 +13,7 @@
 
 @section('content')
     @if(session('msg'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" id="alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             {{ session('msg') }}
         </div>
@@ -29,29 +29,31 @@
                 <a href="" class="minimize">&minus;</a>
             </div>
 
-            <h4 class="panel-title">广告位添加表单</h4>
+            <h4 class="panel-title">地区表单</h4>
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="/admin/position/doadd" method="post">
+            <form class="form-horizontal form-bordered" action="" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">广告位名称</label>
+                    <label class="col-sm-3 control-label">上级地址</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="广告名称" class="form-control" name="position_name" value="" />
+                        <select name="fid" class="form-control">
+                            <option>中国</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">广告位描述</label>
+                    <label class="col-sm-3 control-label">地区名称</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="position_desc"></textarea>
+                        <input type="text" placeholder="广告名称" class="form-control" name="region_name" value="" />
                     </div>
                 </div>
 
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <button class="btn btn-primary btn-danger" id="btn-save">保存广告位</button>&nbsp;
+                            <button class="btn btn-primary btn-danger" id="btn-save">保存地区</button>&nbsp;
                         </div>
                     </div>
                 </div><!-- panel-footer -->
@@ -60,14 +62,14 @@
         </div><!-- panel-body -->
         <script type="text/javascript">
 
-            $(".alert-danger").hide();
+            $("#alert-danger").hide();
 
             $("#btn-save").click(function(){
 
-                var position_name = $("input[name=position_name]").val();
+                var region_name = $("input[name=region_name]").val();
 
-                if(position_name == ''){
-                    $("#error_msg").text('广告位名称不能为空');
+                if(region_name == ''){
+                    $("#error_msg").text('地区名称不能为空');
                     $(".alert-danger").show();
                     return false;
                 }

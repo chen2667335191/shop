@@ -33,21 +33,25 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/Article/doadd" method="post">
                 {{csrf_field()}}
-                <input type="hidden" name="admin_id" value="{{$user_id}}">
+
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章分类</label>
                     <div class="col-sm-6">
-                        <select class="form-control" id="cate_id">
-                            <option value="1">首页banner</option>
+                        <select class="form-control" name="cate_id">
+                            @if(!empty($category))
+                                @foreach($category as $cate)
+                            <option value="{{$cate['id']}}">{{$cate['cate_name']}}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章标题</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="文章标题" class="form-control" name="title" value="" />
+                        <input type="text" placeholder="文章标题" class="form-control" name="title" value=""/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -80,7 +84,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">文章描述</label>
+                    <label class="col-sm-3 control-label">文章内容</label>
                     <div class="col-sm-9">
                         <textarea rows="6" name="content" id="content"></textarea>
                     </div>
